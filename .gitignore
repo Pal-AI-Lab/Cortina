@@ -1,0 +1,4 @@
+node_modules/
+# Cortico 的 clone 与做出来的包都是自己的仓库,不进本工作区的 git。
+state/cortico/
+state/packages/
