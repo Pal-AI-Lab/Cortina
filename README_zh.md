@@ -49,7 +49,7 @@ Cortina 的程序是一组文本指令，由 coding agent（能读写文件、�
 
 准备好：
 
-- 一个能读写项目文件、运行终端命令的 coding agent，例如 Claude Code 或 Gemini CLI。
+- 一个能读写项目文件、运行终端命令的 coding agent，例如 Codex 或 DeepSeek Harness，或者任何 Coding Agent。
 - Node.js 22 或更新版本、Git，以及用于安装项目依赖的 Corepack 和 pnpm。
 - GitHub 与 npm 软件包仓库的网络访问。Cortina 和 Cortico 当前都是私有仓库，需要相应的访问权限。
 
