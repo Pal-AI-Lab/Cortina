@@ -1,8 +1,8 @@
-<!-- Owner: AGENTS.md (the app), app/modes/ -->
+<!-- Owner: AGENTS.md, app/modes/, app/facts.md -->
 
 <h1 align="center">Cortina</h1>
 
-<p align="center">Cortico Extension Creator</p>
+<p align="center">Build Cortico extensions with your coding agent</p>
 
 <p align="center">
   English ｜
@@ -17,132 +17,151 @@
 </p>
 
 <p align="center">
-  <a href="#quick-start">Quick Start</a> ｜
-  <a href="#what-cortina-builds">What It Builds</a> ｜
-  <a href="#workspace">Workspace</a> ｜
-  <a href="#definition-of-done">Definition of Done</a> ｜
-  <a href="https://github.com/Pal-AI-Lab/Cortico">Cortico</a> ｜
-  <a href="https://github.com/Pal-AI-Lab/ThereIsNoApp">TINA Spec</a>
+  <a href="#what-you-can-build">What You Can Build</a> ｜
+  <a href="#get-started">Get Started</a> ｜
+  <a href="#working-together">Working Together</a> ｜
+  <a href="#how-to-check-it-works">How to Check It Works</a>
 </p>
 
-Cortina writes [Cortico](https://github.com/Pal-AI-Lab/Cortico) extensions with you: a World
-(one external environment), a provider (one model-endpoint dialect), a bot, or a migration of
-an existing bot onto Cortico.
+Want your bot to join a game platform, call a new model API, or move to
+[Cortico](https://github.com/Pal-AI-Lab/Cortico)? Cortina helps you turn those ideas into
+extension packages. Cortico is a framework for bots that run continuously, receive events
+from their surroundings, and take action.
 
-This folder is a TINA — There Is No App. The program is the text inside it and the runtime is
-the coding agent you already use: Claude Code, Gemini CLI, or any agent that reads and writes
-files. There is no installer and no interface. You open the folder with your agent and say
-"start"; the agent reads `AGENTS.md`, becomes Cortina, and takes the work one step at a time.
-It writes most of the code and you review it. At every step it says what it is doing and which
-level of verification it has reached.
+Cortina's program is a set of text instructions run by a coding agent: an AI programming
+assistant that can edit files and run commands. Open this folder with your existing agent
+and say “start” to begin.
 
-## Quick Start
+Some familiarity with TypeScript and your target platform helps. You can learn Cortico's
+structure as you go. The agent writes most of the code; you decide what to build, review
+the changes, and check the result in your own instance. It explains the reasons behind
+key designs and changes.
 
-Node 22 or newer, corepack with pnpm, and git. Cortico's repository is private for now, so the
-clone needs an account with access to it, or a checkout already on your machine.
+## What You Can Build
+
+| Your idea | Extension | Output |
+|---|---|---|
+| Connect a bot to a platform, game, or device | **World**: turns external changes into events the bot can observe, and available actions into tools | A `cortico-world-*` package |
+| Call a model API | **provider**: adapts requests to a model service's format | A `cortico-provider-*` package |
+| Create your own bot | **bot**: combines a Persona (how context and behavior are organized), Memory (persistent internal state), and Worlds | A `cortico-bot-*` package |
+| Move an existing bot to Cortico | **Migration**: maps the old code and data, then implements an agreed plan | A migration plan and the extension packages it lists |
+
+For example, start with “I want my bot to notice new messages in a game and send a reply.”
+Cortina helps you decide which changes the bot should hear about and which actions it
+can take, then builds the World around those choices. If a built-in provider already
+supports your model service, it first explains how to configure it.
+
+## Get Started
+
+You will need:
+
+- A coding agent that can edit project files and run terminal commands, such as Claude Code
+  or Gemini CLI.
+- Node.js 22 or newer, Git, and Corepack with pnpm for installing project dependencies.
+- Network access to GitHub and the npm package registry. Cortina and Cortico are currently
+  private repositories, so you need access to both.
+
+Download the workspace in your terminal:
 
 ```bash
 git clone https://github.com/Pal-AI-Lab/Cortina.git
+cd Cortina
 ```
 
-Open the folder with your coding agent and say **start**.
+Open this directory with your coding agent and send:
 
-The first session checks Node, pnpm, git and GitHub reachability and gives a way forward for
-each; puts the workspace under git and makes a first commit; clones Cortico into
-`state/cortico/` and installs its dependencies; then asks which of the four kinds of work you
-want. Close the session whenever you like and say **continue** next time: Cortina recovers
-where it left off from `state/JOURNAL.md` and `state/design/`, and reports it back before
-asking anything.
+> Read AGENTS.md and start.
 
-## What Cortina Builds
+The agent asks what you want to build, checks your development tools, sets up Git
+checkpoints, and downloads Cortico into `state/cortico/` to install its dependencies.
+If a tool is missing or a connection fails, it explains how to proceed. If you already
+have Cortico on your machine, you can give it that path to make a local copy.
 
-| Kind | Result | What you see when it works |
+Unsure which kind of extension you need? Choose the option to learn about Cortico first.
+To resume later, open the same directory and say “continue.” The agent reads the saved
+journal and design notes, then tells you where you left off.
+
+## Working Together
+
+**You choose the behavior; the agent implements it.** Describe what you want and provide
+relevant platform documentation. The agent reads Cortico's documentation and source,
+explains design choices and tradeoffs, then writes code and tests. Review what it produces;
+ask it to explain any part you need to understand before making a decision.
+
+**Progress is saved at each milestone.** Design decisions go in `state/design/`, progress
+in `state/JOURNAL.md`, and extension packages in `state/packages/`. Each package has its
+own Git history. After three unsuccessful attempts at the same problem, the agent stops,
+records what failed, and helps you choose the next step.
+
+**Migration starts with a plan.** With your permission, the agent reads your old bot's
+directory without changing it. It maps the code, memories, and history, then lists the
+packages to build and how to handle existing data. Mechanisms added for older models'
+limitations are initially preserved and marked as fallbacks. Package work begins after
+you approve the plan.
+
+## How to Check It Works
+
+An extension needs three checks:
+
+| Check | Who does it | What it covers |
 |---|---|---|
-| **World** | a `cortico-world-*` package | the extension card reads loaded; a card appears in the World overview; the World's events show up in the timeline; a tool call comes back with a receipt |
-| **provider** | a `cortico-provider-*` package | the dialect appears on the language-model page; a new endpoint filled with base URL, model name and key probes back a status code and a latency; one conversation turn in the terminal |
-| **bot** | a `cortico-bot-*` package | the console title is the bot's display name; one conversation turn in the terminal; the Memory directory holds what the bot wrote |
-| **migration** | a plan you approve, then the packages it lists | each package as above |
+| Code checks and tests | The agent | Runs `pnpm typecheck` and `pnpm test` in the package directory |
+| Loading | The agent | Runs `pnpm check:extension <package dir>` in `state/cortico/` to check that the framework recognizes the extension and can perform a trial load |
+| Actual use | You | Installs it in your own instance and confirms the expected behavior |
 
-A migration starts from your old bot's directory, which Cortina reads only after you agree and
-never writes to. It maps the old implementation onto Cortico's four layers — context assembly
-to the Persona, persistent internal state to Memory, each external IO to a World, session
-lifecycle to the session declarations — and hands you a plan naming every package, what happens
-to the old history data, and which mechanisms are carried over as fallbacks. Nothing is built
-until you confirm the plan.
+Once the first two checks pass, the agent explains how to install the package and what
+to look for:
 
-Packages live in `state/packages/`, one git repository each. Where they are published is your
-decision; Cortina never connects them to a remote.
+- **World**: the extension is marked as loaded and appears in the World overview; events
+  arrive in the timeline and tool calls return results.
+- **provider**: the API type appears on the language-model page; after you enter the
+  address, model name, and key, a connection check returns a status code and latency,
+  and you can complete a conversation turn in the terminal.
+- **bot**: the console shows its configured name, you can complete a conversation turn
+  in the terminal, and the Memory directory contains what the bot wrote.
+- **Migration**: every package in the plan passes its checks.
 
-## Workspace
+The agent reports which checks have passed and which still need confirmation.
 
-| Path | Holds |
+## Files, Keys, and Publishing
+
+API keys for your extensions belong in your Cortico deployment's `.env` file, accessed
+in code through `secret(name)`. Platform credentials stay out of the Cortina workspace.
+Before handing over a package, the agent checks it for strings that resemble keys.
+
+Reading or changing directories outside the workspace needs your explicit permission.
+Downloading Cortico and installing dependencies use the network. Pushing code, publishing
+packages, or changing a running Cortico instance also requires an explicit request from
+you. You decide whether to connect a package to a remote repository and where to publish it.
+
+## Inside the Folder
+
+| Path | Contents |
 |---|---|
-| `AGENTS.md` | the app: what Cortina is, how it works, its invariants. The agent's only entry point |
-| `app/opening.md` | the opening paragraph, emitted verbatim at the start of every session |
-| `app/reading-map.md` | which files in the Cortico clone to read for which kind of work |
-| `app/modes/` | one procedure per kind: `world.md`, `provider.md`, `bot.md`, `migrate.md` |
-| `app/facts.md` | the facts that expire: Cortico's repository, version requirements, commands |
-| `state/JOURNAL.md` | the log, written at every milestone and before a session ends |
-| `state/design/<package>.md` | one design record per package: each decision with its reason |
-| `state/cortico/` | the Cortico clone, read while building; outside this workspace's git |
-| `state/packages/<name>/` | the packages produced, each its own git repository; outside this workspace's git |
+| [`AGENTS.md`](AGENTS.md) | The agent's entry point, workflow, and permitted operations |
+| [`app/`](app/README.md) | Opening text, source-reading guides, four development workflows, and environment requirements |
+| `state/JOURNAL.md` | Completed work and next steps |
+| `state/design/` | Design decisions and reasons for each package |
+| `state/cortico/` | The Cortico repository used during development |
+| `state/packages/` | Generated extensions, each with its own Git repository |
 
-`app/` is the program and is read-only while Cortina runs. Changing it means changing the
-application, which takes your informed consent and is recorded as its own commit with the
-reason for it.
+The workspace's Git history covers the application files, journal, and design notes.
+The Cortico checkout and extension packages are kept outside that history. During normal
+development, `app/` is read-only; changing its instructions needs your consent and a
+separate commit explaining why. The agent reads extension contracts, naming rules, and
+templates from `state/cortico/` as needed. If a rule is missing, it suggests raising it
+with Cortico.
 
-Cortina keeps no second copy of Cortico's rules. Every judgment about how an extension is
-written — the layer boundaries, the naming conventions, the templates, the check script — is
-read from the clone in `state/cortico/` at the moment it is needed, so it does not go stale as
-Cortico moves. A rule that turns out to be missing from Cortico's own documentation becomes a
-suggestion to Cortico rather than a note kept here.
+Cortina follows [TINA Spec 0.1](https://github.com/Pal-AI-Lab/ThereIsNoApp) (There Is No App):
+text defines the application, a coding agent runs it, and files preserve progress.
+See [`AGENTS.md`](AGENTS.md) for the protocol and operating rules.
 
-## Definition of Done
+## Related Projects
 
-An extension package is done when all three hold:
-
-1. **It builds.** `pnpm typecheck` and `pnpm test` are green in the package. Cortina runs this.
-2. **It loads.** `pnpm check:extension <package dir>` passes in `state/cortico/`, dry mount
-   included. Cortina runs this.
-3. **It behaves.** Installed in your instance, it shows the behaviour listed above. Only you can
-   see this one.
-
-Cortina reports the level it actually reached and never calls an unverified package working.
-
-## Environment and Capabilities
-
-Required: Node 22 or newer, corepack with pnpm, and git. Network access is used to clone
-Cortico from GitHub and to install dependencies from the npm registry.
-
-Cortina promises to: read and write nothing outside this workspace, except a directory you name
-and agree to; keep your platform credentials out of the workspace; send no part of the
-workspace to any remote service; connect to no remote git repository other than the one it
-fetches Cortico from. It does not push, publish, or change your running Cortico instance —
-those steps it describes and you run, unless you ask it to do them for you.
-
-Extension secrets live in the deployment's `.env` and are reached through `secret(name)`, so
-package directories carry none. Cortina searches a package for secret-shaped strings before
-handing it over.
-
-## TINA
-
-Cortina conforms to [TINA Spec 0.1](https://github.com/Pal-AI-Lab/ThereIsNoApp). Its
-`AGENTS.md` embeds the protocol invariants I1–I7 verbatim: entry through `AGENTS.md`,
-sub-workspace READMEs, persistence of state across sessions, the line between working in the
-app and modifying it, archival, precedence of instructions, and scope.
-
-One deviation from the default archival policy is declared in `AGENTS.md`: this workspace's git
-covers `app/`, `state/design/` and `state/JOURNAL.md`; the Cortico clone and the packages are
-git repositories of their own and are never embedded in it.
-
-## Related
-
-- [Cortico](https://github.com/Pal-AI-Lab/Cortico) — the event-stream agent harness these
-  extensions are written for.
-- [TINA Spec](https://github.com/Pal-AI-Lab/ThereIsNoApp) — the specification Cortina is built
-  on.
-- [Meta TINA](https://github.com/Pal-AI-Lab/META-TINA) — the reference TINA, which interviews
-  domain experts and produces new TINAs.
+- [Cortico](https://github.com/Pal-AI-Lab/Cortico): the framework that runs these extensions.
+- [TINA Spec](https://github.com/Pal-AI-Lab/ThereIsNoApp): the specification for text applications.
+- [Meta TINA](https://github.com/Pal-AI-Lab/META-TINA): a reference implementation that creates
+  TINAs by interviewing domain experts.
 
 ## License
 
