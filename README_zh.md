@@ -2,7 +2,7 @@
 
 <h1 align="center">Cortina</h1>
 
-<p align="center">和你的 coding agent 一起，为 Cortico 写扩展</p>
+<p align="center">使用 Coding AI 轻松编写为你量身定制的 Cortico 扩展</p>
 
 <p align="center">
   <a href="README.md">English</a> ｜

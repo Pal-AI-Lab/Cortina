@@ -2,7 +2,7 @@
 
 <h1 align="center">Cortina</h1>
 
-<p align="center">Build Cortico extensions with your coding agent</p>
+<p align="center">Easily build Cortico extensions tailored to you with Coding AI</p>
 
 <p align="center">
   English ｜
