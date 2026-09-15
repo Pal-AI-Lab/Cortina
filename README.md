@@ -23,19 +23,18 @@
   <a href="#how-to-check-it-works">How to Check It Works</a>
 </p>
 
-Want your bot to join a game platform, call a new model API, or move to
-[Cortico](https://github.com/Pal-AI-Lab/Cortico)? Cortina helps you turn those ideas into
-extension packages. Cortico is a framework for bots that run continuously, receive events
-from their surroundings, and take action.
+Want your [Cortico](https://github.com/Pal-AI-Lab/Cortico) Bot to join a game platform or call
+a new model API? Or want to move an existing bot to Cortico? Cortina helps you turn those
+ideas into extension packages.
 
 Cortina's program is a set of text instructions run by a coding agent: an AI programming
 assistant that can edit files and run commands. Open this folder with your existing agent
 and say “start” to begin.
 
-Some familiarity with TypeScript and your target platform helps. You can learn Cortico's
-structure as you go. The agent writes most of the code; you decide what to build, review
-the changes, and check the result in your own instance. It explains the reasons behind
-key designs and changes.
+You don't need to know how to program in TypeScript or understand Cortico's internal
+structure. Describe what you want to build, and the agent guides you through the whole
+process: clarifying requirements, writing code, testing, and checking the installation.
+It explains key designs and changes to help you review the work and confirm the results.
 
 ## What You Can Build
 

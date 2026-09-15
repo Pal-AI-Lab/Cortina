@@ -23,15 +23,14 @@
   <a href="#怎样算做好了">怎样算做好了</a>
 </p>
 
-想让 bot 接上一个游戏平台、调用一种新的模型接口，或者把已有的 bot 搬到
-[Cortico](https://github.com/Pal-AI-Lab/Cortico) 上？Cortina 陪你把这些想法做成扩展包。
-Cortico 是让 bot 持续运行、接收外部事件并采取行动的框架。
+想让你的 [Cortico](https://github.com/Pal-AI-Lab/Cortico) Bot 接上游戏平台、调用新的模型接口，
+或者把已有的 bot 迁到 Cortico？Cortina 陪你把这些想法做成扩展包。
 
 Cortina 的程序是一组文本指令，由 coding agent（能读写文件、运行命令的 AI 编程助手）执行。
 用你已有的 agent 打开这个文件夹，说「开始」，就能进入开发流程。
 
-你需要了解一点 TypeScript 和想接入的平台，不必先熟悉 Cortico 的内部结构。代码主要由 agent
-写；你决定要做什么、审阅代码，并在自己的实例里确认效果。它会解释关键设计和改动的理由。
+你不需要了解具体的 TypeScript 编程，也不必先熟悉 Cortico 的内部结构。你说明想做什么，agent
+会引导你完成从需求确认、代码编写到测试和安装验证的全程，并解释关键设计和改动，帮助你审阅和确认效果。
 
 ## 能做什么
 
