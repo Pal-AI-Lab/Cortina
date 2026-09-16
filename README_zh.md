@@ -26,34 +26,30 @@
 想让你的 [Cortico](https://github.com/Pal-AI-Lab/Cortico) Bot 接上游戏平台、调用新的模型接口，
 或者把已有的 bot 迁到 Cortico？Cortina 陪你把这些想法做成扩展包。
 
-Cortina 的程序是一组文本指令，由 coding agent（能读写文件、运行命令的 AI 编程助手）执行。
-用你已有的 agent 打开这个文件夹，说「开始」，就能进入开发流程。
+Cortina 的程序是一组文本指令，使用任意 Coding Agent（例如：Codex, DeepSeek Harness等等）即可执行。
+Clone 本库到本地，用你已有的 Agent 打开这个文件夹，说「开始」，就能开始开发流程。
 
-你不需要了解具体的 TypeScript 编程，也不必先熟悉 Cortico 的内部结构。你说明想做什么，agent
+你不需要了解具体的 TypeScript 编程，也不必先熟悉 Cortico 的内部结构。只需要说明你想做什么，Agent
 会引导你完成从需求确认、代码编写到测试和安装验证的全程，并解释关键设计和改动，帮助你审阅和确认效果。
 
 ## 能做什么
 
 | 你的想法 | 对应的扩展 | 产出 |
 |---|---|---|
-| 让 bot 接入一个平台、游戏或设备 | **World**：把外部变化变成 bot 能观察的事件，把可执行的操作变成工具 | `cortico-world-*` 包 |
-| 让 bot 调用一种模型接口 | **provider**：适配模型服务的请求格式 | `cortico-provider-*` 包 |
-| 做一个自己的 bot | **bot**：组合 Persona（上下文与行为组织方式）、Memory（持久保存的内部状态）和 World | `cortico-bot-*` 包 |
-| 把已有的 bot 迁到 Cortico | **迁移**：梳理旧代码与数据，确认方案后逐个实现 | 迁移方案及其中列出的扩展包 |
+| 让 bot 接入一个平台、游戏或设备 | **Cortico World**：把外部变化变成 bot 能观察的事件，把可执行的操作变成工具 | `cortico-world-*` 包 |
+| 让 bot 调用一种模型接口 | **Provider**：适配模型服务的请求格式 | `cortico-provider-*` 包 |
+| 做一个自己的 bot | **Cortico Bot**：组合 Persona（上下文与行为组织方式）、Memory（持久保存的内部状态）和 World | `cortico-bot-*` 包 |
+| 把已有的 bot 迁到 Cortico | **Bot 迁移**：梳理旧代码与数据，确认方案后逐个实现 | 迁移方案及其中列出的扩展包 |
 
 比如，你可以从「我想让 bot 看见游戏里的新消息，还能发一句话」开始。Cortina 会和你确认哪些
-变化需要通知 bot、允许它做哪些操作，再据此编写 World。如果内置 provider 已经能接入你的模型
-服务，它会先告诉你配置方法。
+变化需要通知 bot、允许它做哪些操作，再据此编写符合规范的 Cortico World。
 
 ## 开始使用
 
 准备好：
 
-- 一个能读写项目文件、运行终端命令的 coding agent，例如 Codex 或 DeepSeek Harness，或者任何 Coding Agent。
-- Node.js 22 或更新版本、Git，以及用于安装项目依赖的 Corepack 和 pnpm。
-- GitHub 与 npm 软件包仓库的网络访问。Cortina 和 Cortico 当前都是私有仓库，需要相应的访问权限。
-
-在终端下载工作区：
+- 一个能读写项目文件、运行终端命令的 Coding Agent，例如 Codex 或 DeepSeek Harness，或者任何 Coding Agent。
+- 克隆此仓库到本地:
 
 ```bash
 git clone https://github.com/Pal-AI-Lab/Cortina.git
@@ -62,13 +58,12 @@ cd Cortina
 
 用 coding agent 打开这个目录，发送：
 
-> 读取 AGENTS.md，开始。
+> 开始
 
 它会先问你想做什么，再检查开发环境、准备 Git 存档，并将 Cortico 下载到 `state/cortico/`
-安装依赖。缺少工具或网络不通时，它会说明解决办法。如果本机已有 Cortico 仓库，也可以提供路径，
-让它从本地复制一份。
+，同时检查并安装必须的依赖。
 
-还没想好做哪种扩展，可以先选「我还是不太懂？」来了解 Cortico。中途离开后，下次在同一目录说「继续」：agent
+还没想好做哪种扩展？可以先选「我还是不太懂？」来了解 Cortico。中途离开后，下次在同一目录说「继续」：Cortina
 会读取保存的日志和设计记录，告诉你上次做到哪里。
 
 ## 怎么一起做
@@ -78,42 +73,12 @@ cd Cortina
 到你能判断为止。
 
 **每个阶段都有存档。** 设计决定保存在 `state/design/`，进度保存在 `state/JOURNAL.md`。
-扩展包放在 `state/packages/`，各自用 Git 保存版本。同一个问题尝试三次仍未解决时，agent 会停下
-记录失败原因，和你选择下一步。
+扩展包放在 `state/packages/`，各自用 Git 保存版本。
 
-**迁移先看方案。** 经你同意后，agent 只读旧 bot 的目录，梳理代码、记忆和历史数据，列出要做的包
-及数据处理方式。为旧模型能力限制而写的机制会先保留，并标为 fallback（备用机制）。你确认方案后
-才开始写包。
+**迁移先看方案。** 经你同意后，agent 只读旧 bot 的目录，梳理代码、记忆和历史数据，整理出需要实现的Cortico Bot，
+和 Cortico World 清单。
 
-## 怎样算做好了
-
-扩展需要通过三步验证：
-
-| 验证 | 谁来做 | 检查什么 |
-|---|---|---|
-| 代码检查与测试 | agent | 在包目录运行 `pnpm typecheck` 和 `pnpm test` |
-| 装载检查 | agent | 在 `state/cortico/` 运行 `pnpm check:extension <包目录>`，确认框架能识别并试装载扩展 |
-| 实际使用 | 你 | 安装到自己的实例，确认预期行为 |
-
-前两步通过后，agent 会说明安装方法和需要观察的结果：
-
-- **World**：扩展显示「已加载」，World 出现在总览中；时间线收到事件，工具调用有回执。
-- **provider**：模型接口类型出现在「语言模型」页；配置地址、模型名和密钥后，连接检查返回状态码
-  与耗时，并能在终端完成一轮对话。
-- **bot**：控制台显示设定的名称，终端能完成一轮对话，Memory 目录保存了它写入的内容。
-- **迁移**：方案中的每个扩展包都通过上述验证。
-
-agent 会报告已经通过哪一步、还有哪一步待确认。
-
-## 文件、密钥与发布
-
-扩展需要的 API 密钥放在你的 Cortico 部署目录的 `.env` 中，代码通过 `secret(name)` 读取。
-平台凭证不放进 Cortina 工作区；交付前，agent 会检查包内是否含有疑似密钥的字符串。
-
-读取或修改工作区外的目录需要你的明确同意。下载 Cortico 和安装依赖需要联网；推送代码、发布包
-或修改正在运行的 Cortico 实例，也需要你明确要求。扩展包是否连接远程仓库、发布到哪里，由你决定。
-
-## 想看看里面
+## 目录结构
 
 | 路径 | 内容 |
 |---|---|
