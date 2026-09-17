@@ -1,13 +1,12 @@
-# 事实(2026-09-12)
+# 事实(2026-09-17)
 
 会过期的东西都在这里,过期只改这一份。
 
 ## Cortico
 
-- 仓库:https://github.com/Pal-AI-Lab/Cortico,跟 master,不钉版本。本工作区里没有随框架过期的
+- 仓库:https://github.com/Pal-AI-Lab/Cortico,公开,跟 main,不钉版本。本工作区里没有随框架过期的
   东西:原则、模板、校验脚本都在 clone 里现读。
-- 仓库暂未公开。公开前 clone 需要有权限的账号;开发者本机已有 checkout 的,直接从本地路径
-  clone,不做链接:`git clone <本地路径> state/cortico`。
+- 开发者本机已有 checkout 的,直接从本地路径 clone,不做链接:`git clone <本地路径> state/cortico`。
 - 取:`git clone https://github.com/Pal-AI-Lab/Cortico.git state/cortico`,然后在 `state/cortico/`
   下 `corepack pnpm install`。
 - 更新:在 `state/cortico/` 下 `git pull`,再 `corepack pnpm install`。

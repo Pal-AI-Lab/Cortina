@@ -6,8 +6,9 @@
    端点条目还能改路径、加请求头、并进请求体;`llamacpp` 认 llama-server。你判断配一条端点就能
    做到时,说一句「内置就能做,这样配」,然后照开发者的意思办。
 2. **读。** 阅读地图的 provider 段。
-3. **起点。** 复制 `state/cortico/templates/extension/provider/` 到 `state/packages/<包名>/`,
-   改名、改指向框架的两行,`git init`。
+3. **起点。** 复制 `state/cortico/templates/extension/provider/` 到 `state/packages/<包名>/`,按模板
+   README 改名(`package.json` 的 name 与 description、代码里的 id 与前缀),`git init`。框架类型
+   来自模板的开发依赖 `cortico`,不用改指向。
 4. **实现。** 方言只写请求体与请求头;HTTP、SSE、重试、计量、流装配都在 `providers/transport/`,
    不自己写传输。
 5. **验证。** 三级,见 AGENTS.md 完成判据。第三级要开发者看的现象:「语言模型」页多出这个方言;

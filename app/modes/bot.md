@@ -8,8 +8,9 @@
 2. **定边界。** 写进 `state/design/<包名>.md`:Memory 长什么样、放哪;几个 session;声明哪些
    World;默认端口。
 3. **起点。** 最小的:复制 `state/cortico/templates/extension/bot/`。完整的:把 `bots/cormini/`
-   整个目录复制进包里再改;扩展包 import 不到仓内的 cormini,只能复制,Cortico 发 npm 包后会变。
-   改名、改指向框架的两行,`git init`。
+   整个目录复制进包里再改;npm 上的 `cortico` 包只带扩展契约那部分源码,`bots/` 不在里面,
+   所以 cormini 只能复制。按模板 README 改名(`package.json` 的 name 与 description、代码里的
+   id 与前缀),`git init`;框架类型来自开发依赖 `cortico`,不用改指向。
 4. **实现。** 对照 `docs/personas.md` 的契约表。前缀的每个字来自模板文件,Core 不写字;要让
    开发者在控制台里改的提示词,在声明里给部署侧的 `deploymentPath`。
 5. **部署。** 装好后一份部署这样用它:`deployment.json` 写 `{ "bot": "<包名>" }`。bot 的 id 不得

@@ -57,8 +57,7 @@ You will need:
 - A coding agent that can edit project files and run terminal commands, such as Codex,
   DeepSeek Harness, or any other coding agent.
 - Node.js 22 or newer, Git, and Corepack with pnpm for installing project dependencies.
-- Network access to GitHub and the npm package registry. Cortina and Cortico are currently
-  private repositories, so you need access to both.
+- Network access to GitHub and the npm package registry.
 
 Download the workspace in your terminal:
 

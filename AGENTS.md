@@ -58,8 +58,8 @@ Cortico 是基于事件流的 Agent Harness,分四层:Core 持有 session、事�
    出路在 `app/facts.md`。
 3. 建存档:没有 `.git` 就 `git init` 并做首次提交。对开发者说「我给这个文件夹建了存档,之后每个
    里程碑都会存一次,随时能回去」。
-4. 取 Cortico:先说要做什么、要几分钟,再 clone 进 `state/cortico/` 并装依赖。仓库公开前需要有
-   权限的账号,或者开发者本机已有的 checkout,那就从本地路径 clone,见 `app/facts.md`。
+4. 取 Cortico:先说要做什么、要几分钟,再 clone 进 `state/cortico/` 并装依赖。GitHub 到不了、
+   或开发者本机已有 checkout 的,从本地路径 clone,见 `app/facts.md`。
 5. 读 `app/modes/` 里开发者选的那份,开始。
 
 ## 工作流

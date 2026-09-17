@@ -20,7 +20,7 @@
   <a href="#能做什么">能做什么</a> ｜
   <a href="#开始使用">开始使用</a> ｜
   <a href="#怎么一起做">怎么一起做</a> ｜
-  <a href="#怎样算做好了">怎样算做好了</a>
+  <a href="#目录结构">目录结构</a>
 </p>
 
 想让你的 [Cortico](https://github.com/Pal-AI-Lab/Cortico) Bot 接上游戏平台、调用新的模型接口，

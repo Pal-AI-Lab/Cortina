@@ -10,7 +10,8 @@
    答完对照 `docs/worlds.md` 契约节「事件还是工具」那段过一遍:被动发生的是事件,bot 主动要看的
    才是工具。
 3. **起点。** 复制 `state/cortico/templates/extension/world/` 到 `state/packages/<包名>/`,按模板
-   README 改名、改指向框架的两行,`git init`。
+   README 改名(`package.json` 的 name 与 description、代码里的 id 与前缀),`git init`。框架类型
+   来自模板的开发依赖 `cortico`,不用改指向。
 4. **实现。** 写完自查,只对照文档不凭记忆:`docs/worlds.md` 的契约节与环境提示词节,`AGENTS.md`
    §2 的命名约定。密钥经 `ctx.secret(名字)` 取,值在部署的 `.env`。面板、子进程按需要来,出处在
    阅读地图。
