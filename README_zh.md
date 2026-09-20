@@ -1,6 +1,11 @@
 <!-- Owner: AGENTS.md、app/modes/、app/facts.md -->
 
-<h1 align="center">Cortina</h1>
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/cortina-banner-dark.png">
+    <img src="assets/cortina-banner.png" alt="Cortina" width="600">
+  </picture>
+</p>
 
 <p align="center">使用 Coding AI 轻松编写为你量身定制的 Cortico 扩展</p>
 
