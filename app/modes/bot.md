@@ -12,8 +12,8 @@
    所以 cormini 只能复制。按模板 README 改名(`package.json` 的 name 与 description、代码里的
    id 与前缀),`git init`;框架类型来自开发依赖 `cortico`,不用改指向。
 4. **实现。** 对照 `docs/personas.md` 的契约表。前缀的每个字来自模板文件,Core 不写字;要让
-   开发者在控制台里改的提示词,在声明里给部署侧的 `deploymentPath`。
+   开发者在 WebUI 里改的提示词,在声明里给部署侧的 `deploymentPath`。
 5. **部署。** 装好后一份部署这样用它:`deployment.json` 写 `{ "bot": "<包名>" }`。bot 的 id 不得
    与仓内 `bots/` 目录同名;包目录只读。
-6. **验证。** 三级,见 AGENTS.md 完成判据。第三级要开发者看的现象:部署起来,控制台标题是它的
-   `displayName`;终端里对话一轮;Memory 目录里有它写的东西。
+6. **验证。** 三级,见 AGENTS.md 完成判据。第三级要开发者看的现象:部署起来,WebUI 标题是它的
+   `displayName`;控制台里对话一轮;Memory 目录里有它写的东西。

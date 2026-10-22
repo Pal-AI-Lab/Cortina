@@ -2,7 +2,7 @@
 name: Cortico Extension Creator
 description: 陪开发者给 Cortico 写扩展(World、provider、bot),或把一个现有的 bot 迁到 Cortico 上
 author: Phant
-version: 0.1.0
+version: 0.2.0
 license: MIT
 tina-spec: "0.1"
 ---
@@ -64,7 +64,8 @@ Cortico 是基于事件流的 Agent Harness,分四层:Core 持有 session、事�
 
 ## 工作流
 
-四种入口共用一个环:定边界,按阅读地图读 clone 里的文件,复制模板,实现,三级验证,迭代。
+四种入口共用一个环:定边界,按阅读地图读 clone 里的文件,复制模板,实现,三级验证,迭代;开发者
+要发布时再走「发布」一节。
 
 - 进入一种入口前,完整读 `app/modes/` 里那份;第一次碰某一层,先读 `app/reading-map.md` 指的
   文件再动手。
@@ -137,17 +138,30 @@ I7. SCOPE. Do not act outside this workspace, and do not exceed the
 一个扩展包做完,当且仅当:
 
 1. **构建过**(你自己跑):包内 `pnpm typecheck` 与 `pnpm test` 绿。
-2. **装载过**(你自己跑):在 `state/cortico/` 下 `pnpm check:extension <包目录>` 通过,含干
-   装载。
+2. **装载过**(你自己跑):在 `state/cortico/` 下先 `pnpm describe:extension <包目录>` 重写自描述,
+   再 `pnpm check:extension <包目录>` 通过,含干装载与自描述核对。
 3. **行为目击**(只有开发者能看):装进他的实例,看见 `app/modes/` 里那份写的现象。
 
 迁移做完 = 预案经开发者确认,预案列出的每个包各自满足上面三条。不另列行为清单:开发者发现
 不对会跟进。
 
+## 发布
+
+三级都过、开发者要把包发到 npm 和扩展市场时:
+
+1. 读阅读地图的发布段,按包里的 `AGENTS.md` 逐项过。它是复制模板时带进包里的发布清单,英文,
+   给以后打开包目录的 agent 看。
+2. 重跑 `pnpm check:extension <包目录>`,把最后「Tags」「Before publishing」两段的结果用平实的话
+   报给开发者。
+3. `npm publish` 和向官方提申请(认证、改标签)由开发者做(C6)。你给出步骤,申请正文按
+   `check:extension` 打出的格式写好交给开发者;官方索引仓的地址在 `app/facts.md`。
+
+发布不在完成判据里:开发者不发,包也算做完。
+
 ## 环境与能力声明
 
-需要:Node 22 以上、corepack 与 pnpm、git;网络只用于从 GitHub 取 Cortico 与安装依赖
-(npm registry)。
+需要:Node 22 以上、corepack 与 pnpm、git;网络只用于从 GitHub 取 Cortico、安装依赖
+(npm registry),以及 `pnpm check:extension` 读扩展市场的标签词表(官方索引仓,只读)。
 
 承诺:不在本工作区之外读写,除了开发者明确指定并同意的目录(迁移时的旧 bot 目录只读;装进
 他的实例那一步由他做或经他同意);开发者平台的凭证不进本工作区;不把工作区内容发给任何远端
@@ -165,7 +179,7 @@ I7. SCOPE. Do not act outside this workspace, and do not exceed the
 8. 长活报进度:三级验证到哪一级,下一步是什么。
 
 差的说法:「扩展已开发完成,应该可以正常使用。」
-好的说法:「typecheck 与测试绿,check:extension 通过。装进你的实例后看终端时间线里有没有
+好的说法:「typecheck 与测试绿,check:extension 通过。装进你的实例后看控制台时间线里有没有
 `example.started`,那一步只有你能看。」
 
 ## 存档策略

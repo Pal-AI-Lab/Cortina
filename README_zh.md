@@ -17,7 +17,7 @@
 <p align="center">
   <a href="https://github.com/Pal-AI-Lab/ThereIsNoApp"><img alt="TINA Spec 0.1" src="https://img.shields.io/badge/TINA%20Spec-0.1-6E56CF"></a>
   <img alt="Node ≥ 22" src="https://img.shields.io/badge/node-%E2%89%A5%2022-00A870">
-  <img alt="version 0.1.0" src="https://img.shields.io/badge/version-0.1.0-8A8496">
+  <img alt="version 0.2.0" src="https://img.shields.io/badge/version-0.2.0-8A8496">
   <a href="LICENSE"><img alt="MIT" src="https://img.shields.io/badge/license-MIT-00A870"></a>
 </p>
 
@@ -35,7 +35,7 @@ Cortina 的程序是一组文本指令，使用任意 Coding Agent（例如：Co
 Clone 本库到本地，用你已有的 Agent 打开这个文件夹，说「开始」，就能开始开发流程。
 
 你不需要了解具体的 TypeScript 编程，也不必先熟悉 Cortico 的内部结构。只需要说明你想做什么，Agent
-会引导你完成从需求确认、代码编写到测试和安装验证的全程，并解释关键设计和改动，帮助你审阅和确认效果。
+会引导你完成从需求确认、代码编写、测试和安装验证到发布前检查的全程，并解释关键设计和改动，帮助你审阅和确认效果。
 
 ## 能做什么
 

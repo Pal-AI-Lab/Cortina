@@ -17,7 +17,7 @@
 <p align="center">
   <a href="https://github.com/Pal-AI-Lab/ThereIsNoApp"><img alt="TINA Spec 0.1" src="https://img.shields.io/badge/TINA%20Spec-0.1-6E56CF"></a>
   <img alt="Node ≥ 22" src="https://img.shields.io/badge/node-%E2%89%A5%2022-00A870">
-  <img alt="version 0.1.0" src="https://img.shields.io/badge/version-0.1.0-8A8496">
+  <img alt="version 0.2.0" src="https://img.shields.io/badge/version-0.2.0-8A8496">
   <a href="LICENSE"><img alt="MIT" src="https://img.shields.io/badge/license-MIT-00A870"></a>
 </p>
 
@@ -38,7 +38,8 @@ already use, and say “start” to begin.
 
 You don't need to know how to program in TypeScript or understand Cortico's internal
 structure. Describe what you want to build, and the agent guides you through the whole
-process: clarifying requirements, writing code, testing, and checking the installation.
+process: clarifying requirements, writing code, testing, checking the installation, and
+preparing to publish.
 It explains key designs and changes to help you review the work and confirm the results.
 
 ## What You Can Build

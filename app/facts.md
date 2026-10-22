@@ -1,4 +1,4 @@
-# 事实(2026-09-17)
+# 事实(2026-10-22)
 
 会过期的东西都在这里,过期只改这一份。
 
@@ -10,7 +10,8 @@
 - 取:`git clone https://github.com/Pal-AI-Lab/Cortico.git state/cortico`,然后在 `state/cortico/`
   下 `corepack pnpm install`。
 - 更新:在 `state/cortico/` 下 `git pull`,再 `corepack pnpm install`。
-- 扩展契约版本不记在这里,读 `state/cortico/src/extensions/manifest.ts` 的 `EXTENSION_API_VERSION`。
+- 扩展契约版本不记在这里,world、provider、bot 各一个:读 `state/cortico/src/extensions/manifest.ts`
+  的 `EXTENSION_API_VERSIONS`,或看 `pnpm check:extension` 输出里 `Contracts:` 那一行。
 
 ## 环境
 
@@ -24,5 +25,13 @@
 |---|---|---|
 | 包目录 | `corepack pnpm install` | 装依赖 |
 | 包目录 | `pnpm typecheck && pnpm test` | 第一级 |
-| `state/cortico/` | `pnpm check:extension <包目录>` | 第二级,含干装载 |
-| 开发者的实例 | 控制台「扩展」页「手动安装」填包目录的绝对路径,重启进程 | 第三级的前置,由开发者做 |
+| `state/cortico/` | `pnpm describe:extension <包目录>` | 写自描述 `describe.json`;工具、事件或提示词改了就重跑 |
+| `state/cortico/` | `pnpm check:extension <包目录>` | 第二级,含干装载与自描述核对;最后两段列标签与发布前清单 |
+| 开发者的实例 | WebUI「扩展」页「手动安装」里选「从本机目录安装」,选包目录,重启进程 | 第三级的前置,由开发者做 |
+
+## 扩展市场
+
+- 官方索引仓:https://github.com/Pal-AI-Lab/cortico-extensions。标签词表是那里的 `TAGS.md`;改标签、
+  认证、替代包、申诉都在那个仓提 issue,正文格式由 `pnpm check:extension` 打出来。
+- 市场列的是 npm 上带本类关键字(`cortico-world` / `cortico-provider` / `cortico-bot`)的包,模板的
+  `package.json` 已带上。
